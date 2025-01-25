@@ -1,8 +1,6 @@
 import { useEffect, useState } from "react";
-import io from "socket.io-client";
+import { socket } from "./socket";
 import "./Chat.css";
-
-const socket = io("http://localhost:3000");
 
 const SOCKET_MESSAGE_EVENT_NAME = "message";
 
