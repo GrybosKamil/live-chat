@@ -1,0 +1,21 @@
+.chat {
+  padding: 1rem;
+
+  border: 0.05rem solid #e0e0e0;
+  border-radius: 1rem;
+}
+
+.chat > .history {
+  max-width: 75vw;
+}
+
+.chat > .history > .history-message {
+  padding: 0.75rem;
+  margin: 0.5rem;
+
+  border: 0.1rem solid #e0e0e0;
+  border-radius: 0.75rem;
+
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}

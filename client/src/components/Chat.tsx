@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import io from "socket.io-client";
+import "./Chat.css";
 
 const socket = io("http://localhost:3000");
 
@@ -27,17 +28,21 @@ export default function Chat() {
   };
 
   return (
-    <div>
-      <input
-        type="text"
-        value={input}
-        onChange={(e) => setInput(e.target.value)}
-        onKeyPress={(e) => e.key === "Enter" && sendMessage()}
-      />
-      <button onClick={sendMessage}>Send</button>
-      <div>
+    <div className="chat">
+      <div className="message-form">
+        <input
+          type="text"
+          value={input}
+          onChange={(e) => setInput(e.target.value)}
+          onKeyUp={(e) => e.key === "Enter" && sendMessage()}
+        />
+        <button onClick={sendMessage}>Send</button>
+      </div>
+      <div className="history">
         {messages.map((message, index) => (
-          <div key={index + message}>{message}</div>
+          <div key={index + message} className="history-message">
+            {message}
+          </div>
         ))}
       </div>
     </div>
