@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { socket } from "./socket";
+import { socket } from "../socket";
 import "./Chat.css";
 
 const SOCKET_MESSAGE_EVENT_NAME = "message";

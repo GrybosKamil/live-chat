@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import "./App.css";
 import Chat from "./components/Chat";
-import { socket } from "./components/socket";
+import { socket } from "./socket";
 
 const SOCKET_USER_CONNECTED_EVENT_NAME = "user-connected";
 
