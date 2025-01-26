@@ -3,12 +3,22 @@ import { socket } from "../socket";
 import "./Chat.css";
 
 const SOCKET_MESSAGE_EVENT_NAME = "message";
+const SOCKET_JOIN_ROOM_EVENT_NAME = "join-room";
 
-export default function Chat() {
+interface ChatProps {
+  room: string;
+  leaveRoom: () => void;
+}
+
+export default function Chat({ room, leaveRoom }: ChatProps) {
   const [messages, setMessages] = useState<string[]>([]);
   const [input, setInput] = useState<string>("");
 
   useEffect(() => {
+    if (room) {
+      socket.emit(SOCKET_JOIN_ROOM_EVENT_NAME, room);
+    }
+
     socket.on(SOCKET_MESSAGE_EVENT_NAME, (message: string) => {
       setMessages((prevMessages) => [message, ...prevMessages]);
     });
@@ -16,17 +26,21 @@ export default function Chat() {
     return () => {
       socket.off(SOCKET_MESSAGE_EVENT_NAME);
     };
-  }, []);
+  }, [room]);
 
   const sendMessage = () => {
     if (input) {
-      socket.emit(SOCKET_MESSAGE_EVENT_NAME, input);
+      socket.emit(SOCKET_MESSAGE_EVENT_NAME, { room, message: input });
       setInput("");
     }
   };
 
   return (
     <div className="chat">
+      <div>Room name: {room}</div>
+
+      <button onClick={() => leaveRoom()}>Leave room</button>
+
       <div className="message-form">
         <input
           type="text"
@@ -36,6 +50,7 @@ export default function Chat() {
         />
         <button onClick={sendMessage}>Send</button>
       </div>
+
       <div className="history">
         {messages.map((message, index) => (
           <div key={index + message} className="history-message">
