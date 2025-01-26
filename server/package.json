@@ -4,8 +4,7 @@
   "main": "src/index.ts",
   "scripts": {
     "start": "ts-node src/index.ts",
-    "build": "npm i && npm run build:client && tsc",
-    "build:client": "cd ../client && npm run build"
+    "build": "tsc"
   },
   "dependencies": {
     "express": "4.17.1",

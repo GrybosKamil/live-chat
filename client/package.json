@@ -5,12 +5,12 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "npm i && tsc && vite build",
     "lint:eslint": "eslint .",
     "lint:prettier": "prettier --check '**/*.{js,ts,jsx,tsx,json,html}'",
     "lint:prettierFix": "prettier --write '**/*.{js,ts,jsx,tsx,json,html}'",
     "lint": "npm run lint:eslint && npm run lint:prettier",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "build": "tsc && vite build"
   },
   "dependencies": {
     "react": "18.3.1",
