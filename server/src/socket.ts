@@ -7,11 +7,22 @@ interface Room {
   users: number;
 }
 
+const MAX_USERS = 5;
+
 export function setupSocket(io: any) {
   const rooms: Room[] = [];
   let numberOfUsersConnected = 0;
 
   io.on("connection", (socket: any) => {
+    if (numberOfUsersConnected >= MAX_USERS) {
+      console.log(
+        "User connection rejected: maximum number of users reached. MAX_USERS = " +
+          MAX_USERS
+      );
+      socket.disconnect();
+      return;
+    }
+
     console.log("A user connected");
     numberOfUsersConnected++;
 

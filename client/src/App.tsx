@@ -6,6 +6,7 @@ import { socket } from "./socket";
 const SOCKET_USER_CONNECTED_EVENT_NAME = "user-connected";
 
 export default function App() {
+  const [error, setError] = useState<string | null>(null);
   const [usersConnected, setUsersConnected] = useState<number>(0);
   const [name, setName] = useState<string>("");
   const [room, setRoom] = useState<string>("");
@@ -18,6 +19,12 @@ export default function App() {
       },
     );
 
+    socket.on('disconnect', (reason:string) => {
+      if (reason === 'io server disconnect') {
+        setError('Connection rejected: maximum number of users reached.');
+      }
+    });
+
     return () => {
       socket.off(SOCKET_USER_CONNECTED_EVENT_NAME);
     };
@@ -25,6 +32,10 @@ export default function App() {
 
   function leaveRoom() {
     setRoom("");
+  }
+
+  if (error) {
+    return <div id="App">{error}</div>;
   }
 
   return (
@@ -43,6 +54,8 @@ export default function App() {
         <button onClick={() => setRoom(name)}>Join room</button>
       </div>
 
+
+      {error && <div className="error">{error}</div>}
       {room ? <Chat room={room} leaveRoom={leaveRoom} /> : null}
     </div>
   );
