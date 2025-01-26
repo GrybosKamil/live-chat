@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "main": "src/index.ts",
   "scripts": {
-    "start": "npm run build:client && ts-node src/index.ts",
-    "build": "tsc",
+    "start": "ts-node src/index.ts",
+    "build": "npm run build:client && tsc",
     "build:client": "cd ../client && npm run build"
   },
   "dependencies": {
