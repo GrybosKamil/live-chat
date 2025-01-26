@@ -19,9 +19,9 @@ export default function App() {
       },
     );
 
-    socket.on('disconnect', (reason:string) => {
-      if (reason === 'io server disconnect') {
-        setError('Connection rejected: maximum number of users reached.');
+    socket.on("disconnect", (reason: string) => {
+      if (reason === "io server disconnect") {
+        setError("Connection rejected: maximum number of users reached.");
       }
     });
 
@@ -53,7 +53,6 @@ export default function App() {
         />
         <button onClick={() => setRoom(name)}>Join room</button>
       </div>
-
 
       {error && <div className="error">{error}</div>}
       {room ? <Chat room={room} leaveRoom={leaveRoom} /> : null}
