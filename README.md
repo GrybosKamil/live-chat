@@ -23,16 +23,18 @@ live-chat
 └── README.md              # Project documentation
 ```
 
-## Setup Instructions
+## Setup Instructions for local development
 
 ### Server
 
 1. Navigate to the `server` directory:
+
    ```
    cd server
    ```
 
 2. Install the dependencies:
+
    ```
    npm install
    ```
@@ -45,11 +47,13 @@ live-chat
 ### Client
 
 1. Navigate to the `client` directory:
+
    ```
    cd client
    ```
 
 2. Install the dependencies:
+
    ```
    npm install
    ```
@@ -59,9 +63,16 @@ live-chat
    npm run dev
    ```
 
-### Building the Client
+### Local access
+
+Once both the server and client are running, you can open your browser and navigate to `http://localhost:5173` to access the chat application during development or `http://localhost:3000` to access the built client served by the server. You can send and receive messages in real-time without storing them.
+
+### Serving from server
+
+## Building
 
 1. Navigate to the `client` directory and build client:
+
    ```
    cd client
    npm run build
@@ -85,6 +96,23 @@ live-chat
 
 The server will serve the client from the `dist` directory on port `3000` by default.
 
-## Usage
+## Running with Docker
 
-Once both the server and client are running, you can open your browser and navigate to `http://localhost:5173` to access the chat application during development or `http://localhost:3000` to access the built client served by the server. You can send and receive messages in real-time without storing them.
+You can also run the application using Docker. Follow these steps:
+
+1. Build the Docker image:
+
+   ```sh
+   docker-compose build
+   ```
+
+2. Start the Docker container:
+   ```sh
+   docker-compose up
+   ```
+
+The server will be accessible at `http://localhost:3000`, and it will serve the built client from the `dist` directory.
+
+### Environment Variables
+
+- `NODE_ENV`: Set to `production` for production builds.
