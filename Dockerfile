@@ -13,10 +13,9 @@ COPY server ./server
 
 RUN npm run build 
 
-RUN mv ./client/dist ./temp
-RUN rm -rf ./client
-RUN mkdir ./client && mkdir ./client/dist
-RUN mv ./temp ./client/dist
+WORKDIR /app
+
+RUN npm run build
 
 EXPOSE 3000
 
