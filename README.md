@@ -2,6 +2,11 @@
 
 This is a simple live chat application built using React, NodeJS, Express and Socket.IO for real-time communication on the backend.
 
+## Live Demo
+
+You can see a live demo of the application running at [www.live-chat.gryboskamil.com](http://www.live-chat.gryboskamil.com).
+
+
 ## Project Structure
 
 ```
