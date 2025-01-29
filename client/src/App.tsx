@@ -42,18 +42,18 @@ export default function App() {
     <div id="App">
       <h1>Live Chat</h1>
       <h2>Users: {usersConnected}</h2>
-
-      <div className="join-room-form">
-        <input
-          type="text"
-          value={name}
-          placeholder="Enter room name"
-          onChange={(e) => setName(e.target.value)}
-          onKeyUp={(e) => e.key === "Enter" && setRoom(name)}
-        />
-        <button onClick={() => setRoom(name)}>Join room</button>
-      </div>
-
+      {!room && (
+        <div className="join-room-form">
+          <input
+            type="text"
+            value={name}
+            placeholder="Enter room name"
+            onChange={(e) => setName(e.target.value)}
+            onKeyUp={(e) => e.key === "Enter" && setRoom(name)}
+          />
+          <button onClick={() => setRoom(name)}>Join room</button>
+        </div>
+      )}
       {error && <div className="error">{error}</div>}
       {room ? <Chat room={room} leaveRoom={leaveRoom} /> : null}
     </div>

@@ -1,5 +1,7 @@
 const SOCKET_USER_CONNECTED_EVENT_NAME = "user-connected";
+const SOCKET_USER_CONNECTED_ROOM_EVENT_NAME = "user-connected-room";
 const SOCKET_JOIN_ROOM_EVENT_NAME = "join-room";
+const SOCKET_LEAVE_ROOM_EVENT_NAME = "leave-room";
 const SOCKET_MESSAGE_EVENT_NAME = "message";
 
 interface Room {
@@ -36,7 +38,16 @@ export function setupSocket(io: any) {
       }
       room.users++;
       socket.join(roomName);
-      io.to(roomName).emit(SOCKET_USER_CONNECTED_EVENT_NAME, room.users);
+      io.to(roomName).emit(SOCKET_USER_CONNECTED_ROOM_EVENT_NAME, room.users);
+    });
+
+    socket.on(SOCKET_LEAVE_ROOM_EVENT_NAME, (roomName: string) => {
+      console.log("User left room: " + roomName);
+      let room = rooms.find((r) => r.name === roomName);
+      if (room) {
+        room.users--;
+        io.to(roomName).emit(SOCKET_USER_CONNECTED_ROOM_EVENT_NAME, room.users);
+      }
     });
 
     socket.on(
@@ -57,7 +68,10 @@ export function setupSocket(io: any) {
           if (room.users === 0) {
             rooms.splice(rooms.indexOf(room), 1);
           } else {
-            io.to(room.name).emit(SOCKET_USER_CONNECTED_EVENT_NAME, room.users);
+            io.to(room.name).emit(
+              SOCKET_USER_CONNECTED_ROOM_EVENT_NAME,
+              room.users
+            );
           }
         }
       });
