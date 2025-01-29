@@ -42,7 +42,6 @@ export function setupSocket(io: any) {
     });
 
     socket.on(SOCKET_LEAVE_ROOM_EVENT_NAME, (roomName: string) => {
-      console.log("User left room: " + roomName);
       let room = rooms.find((r) => r.name === roomName);
       if (room) {
         room.users--;
