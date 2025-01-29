@@ -42,7 +42,7 @@ export default function Chat({ room, leaveRoom }: ChatProps) {
 
     return () => {
       socket.emit(SOCKET_LEAVE_ROOM_EVENT_NAME, room);
-      
+
       socket.off(SOCKET_MESSAGE_EVENT_NAME);
       socket.off(SOCKET_USER_CONNECTED_ROOM_EVENT_NAME);
 
