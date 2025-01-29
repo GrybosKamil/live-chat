@@ -13,10 +13,6 @@ COPY server ./server
 
 RUN npm run build 
 
-WORKDIR /app
-
-RUN npm run build
-
 EXPOSE 3000
 
 CMD ["npm", "start"]
