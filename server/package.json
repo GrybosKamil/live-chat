@@ -7,11 +7,11 @@
     "build": "tsc"
   },
   "dependencies": {
-    "express": "5.1.0",
+    "express": "5.2.1",
     "socket.io": "4.8.1"
   },
   "devDependencies": {
-    "@types/express": "5.0.4",
+    "@types/express": "5.0.6",
     "ts-node": "10.9.2",
     "typescript": "5.9.3"
   }
